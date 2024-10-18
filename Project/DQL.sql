@@ -73,7 +73,6 @@ CREATE TABLE Notes (
     expires_at TIMESTAMP DEFAULT (CURRENT_TIMESTAMP + INTERVAL '24 hours')
 );
 
-
 INSERT INTO Users (name, username, phone, email, password, bio, profile_picture)
 VALUES
 ('Michael Brown', 'michaelb', '111222333', 'michael@example.com', 'passwordabc', 'Love traveling the world.', 'michael_profile.jpg'),
@@ -87,101 +86,145 @@ VALUES
 select * from Users;
 INSERT INTO Posts (user_id, content, image_url)
 VALUES
-(17, 'Exploring the beauty of nature in my latest adventure!', 'nature_trip.jpg'),
-(18, 'Just finished an intense workout session. Feeling great!', 'workout.jpg'),
-(17, 'Played a new song today, can’t wait to share it with you all.', 'guitar.jpg'),
-(18, 'Life is too short to not enjoy every moment.', 'life_quotes.jpg'),
-(19, 'Building my new tech project from scratch!', 'tech_project.jpg'),
-(20, 'Captured an amazing sunset at the beach.', 'beach_sunset.jpg'),
-(23, 'Tried a new recipe for dinner tonight. Delicious!', 'dinner_recipe.jpg'),
-(22, 'New fashion line dropping soon. Stay tuned!', 'fashion_line.jpg');
+(7, 'Exploring the beauty of nature in my latest adventure!', 'nature_trip.jpg'),
+(8, 'Just finished an intense workout session. Feeling great!', 'workout.jpg'),
+(1, 'Played a new song today, can’t wait to share it with you all.', 'guitar.jpg'),
+(2, 'Life is too short to not enjoy every moment.', 'life_quotes.jpg'),
+(3, 'Building my new tech project from scratch!', 'tech_project.jpg'),
+(2, 'Captured an amazing sunset at the beach.', 'beach_sunset.jpg'),
+(4, 'Tried a new recipe for dinner tonight. Delicious!', 'dinner_recipe.jpg'),
+(5, 'New fashion line dropping soon. Stay tuned!', 'fashion_line.jpg');
 select * from Posts;
 INSERT INTO Stories (user_id, content, image_url, expires_at)
 VALUES
-(18, 'On top of the world!', 'mountaintop.jpg', CURRENT_TIMESTAMP + INTERVAL '24 hours'),
-(24, 'Prepping for the marathon next week!', 'marathon_prep.jpg', CURRENT_TIMESTAMP + INTERVAL '24 hours'),
-(17, 'Jamming with the band today.', 'band_jam.jpg', CURRENT_TIMESTAMP + INTERVAL '24 hours'),
-(18, 'Chilling at the park.', 'park.jpg', CURRENT_TIMESTAMP + INTERVAL '24 hours'),
-(19, 'Coding late into the night.', 'coding_night.jpg', CURRENT_TIMESTAMP + INTERVAL '24 hours'),
-(22, 'Golden hour at the beach.', 'golden_hour.jpg', CURRENT_TIMESTAMP + INTERVAL '24 hours'),
-(21, 'Baking something special today.', 'baking.jpg', CURRENT_TIMESTAMP + INTERVAL '24 hours'),
-(21, 'Sneak peek of the new collection!', 'collection_sneak_peek.jpg', CURRENT_TIMESTAMP + INTERVAL '24 hours');
+(8, 'On top of the world!', 'mountaintop.jpg', CURRENT_TIMESTAMP + INTERVAL '24 hours'),
+(4, 'Prepping for the marathon next week!', 'marathon_prep.jpg', CURRENT_TIMESTAMP + INTERVAL '24 hours'),
+(7, 'Jamming with the band today.', 'band_jam.jpg', CURRENT_TIMESTAMP + INTERVAL '24 hours'),
+(3, 'Chilling at the park.', 'park.jpg', CURRENT_TIMESTAMP + INTERVAL '24 hours'),
+(8, 'Coding late into the night.', 'coding_night.jpg', CURRENT_TIMESTAMP + INTERVAL '24 hours'),
+(2, 'Golden hour at the beach.', 'golden_hour.jpg', CURRENT_TIMESTAMP + INTERVAL '24 hours'),
+(1, 'Baking something special today.', 'baking.jpg', CURRENT_TIMESTAMP + INTERVAL '24 hours'),
+(1, 'Sneak peek of the new collection!', 'collection_sneak_peek.jpg', CURRENT_TIMESTAMP + INTERVAL '24 hours');
 select * from Stories;
 
-INSERT INTO Likes (user_id, story_id)
-VALUES
-(17,7),
-(18,2),
-(22,2),
-(24,1),
-(22,2),
-(17,6),
-(18,3);
-select * from Likes;
 INSERT INTO Comments (user_id, post_id, content)
 VALUES
-(19, 21, 'This is amazing! I love your adventures.'),
-(20, 22, 'Great job on the workout! Keep it up!'),
-(23, 17, 'Can’t wait to hear the new song!'),
-(24, 18, 'So true, life is to be enjoyed every day.'),
-(17, 24, 'Looking forward to seeing your tech project!'),
-(18, 17, 'That sunset looks incredible!'),
-(17, 18, 'That recipe sounds delicious, will try it soon.'),
-(18, 19, 'Excited for your new fashion line!');
+(1, 2, 'This is amazing! I love your adventures.'),
+(7, 2, 'Great job on the workout! Keep it up!'),
+(3, 1, 'Can’t wait to hear the new song!'),
+(4, 8, 'So true, life is to be enjoyed every day.'),
+(7, 4, 'Looking forward to seeing your tech project!'),
+(8, 7, 'That sunset looks incredible!'),
+(7, 8, 'That recipe sounds delicious, will try it soon.'),
+(8, 1, 'Excited for your new fashion line!');
 select * from Comments;
 INSERT INTO FriendRequests (sender_id, receiver_id, status)
 VALUES
-(23, 17, 'accepted'), 
-(24, 18, 'pending'), 
-(22, 17, 'accepted'), 
-(20, 18, 'rejected');
+(2, 7, 'accepted'), 
+(4, 8, 'pending'), 
+(2, 7, 'accepted'), 
+(2, 1, 'rejected');
 select * from FriendRequests;
 INSERT INTO PostLikes (user_id, post_id)
 VALUES
-(17,17),
-(17,18),
-(20,21),
-(22,20),
-(24,17),
-(18,19),
-(19,24);
+(7,1),
+(7,8),
+(2,1),
+(2,4),
+(4,7),
+(8,5),
+(7,5);
 select * from PostLikes;
 INSERT INTO StoryLikes (user_id, story_id)
 VALUES
-(17,7),
-(18,2),
-(22,2),
-(24,1),
-(22,2),
-(17,6),
-(18,3);
+(1,7),
+(8,2),
+(3,2),
+(4,1),
+(5,2),
+(7,6),
+(8,3);
 select * from StoryLikes;
 INSERT INTO DirectMessages (sender_id, receiver_id, content)
 VALUES
-(17, 18, 'Hey, how are you doing?'),
-(18, 17, 'I’m doing great, how about you?'),
-(22, 19, 'Loved your latest post!'),
-(19, 22, 'Thanks! Let’s catch up soon.'),
-(24, 20, 'Are you available for a call?'),
-(20, 24, 'Sure, let’s schedule something for tomorrow.');
+(7, 8, 'Hey, how are you doing?'),
+(8, 7, 'I’m doing great, how about you?'),
+(2, 1, 'Loved your latest post!'),
+(1, 2, 'Thanks! Let’s catch up soon.'),
+(4, 2, 'Are you available for a call?'),
+(2, 4, 'Sure, let’s schedule something for tomorrow.');
 select * from DirectMessages;
 INSERT INTO Follow (follower_id, following_id)
 VALUES
-(20, 18), 
-(24, 22), 
-(23, 17),
-(21, 18), 
-(18, 17), 
-(17, 22),
-(19, 18);
+(2, 8), 
+(4, 2), 
+(3, 1),
+(1, 8), 
+(8, 7), 
+(7, 2),
+(1, 8);
 select * from Follow;
 INSERT INTO Notes (user_id, content)
 VALUES
-(17, 'Excited about the upcoming trip!'),
-(18, 'Stay positive, stay focused.'),
-(19, 'Working on a new project, stay tuned!'),
-(20, 'Enjoying the moment. Life is good!'),
-(22, 'New collection coming soon!'),
-(23, 'Trying out a new recipe today!'),
-(24, 'Just finished a great workout. Feeling amazing!');
+(7, 'Excited about the upcoming trip!'),
+(8, 'Stay positive, stay focused.'),
+(1, 'Working on a new project, stay tuned!'),
+(2, 'Enjoying the moment. Life is good!'),
+(2, 'New collection coming soon!'),
+(3, 'Trying out a new recipe today!'),
+(4, 'Just finished a great workout. Feeling amazing!');
 SELECT * FROM Notes;
+
+
+CREATE OR REPLACE FUNCTION add_follower_on_accept()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO Follow (follower_id, following_id, created_at)
+    VALUES (NEW.sender_id, NEW.receiver_id, CURRENT_TIMESTAMP);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER after_friend_request_accept
+AFTER UPDATE OF status ON FriendRequests
+FOR EACH ROW
+WHEN (NEW.status = 'accepted')
+EXECUTE FUNCTION add_follower_on_accept();
+CREATE OR REPLACE FUNCTION grant_access_on_follow()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- برای اطمینان از این که کاربر فالوور دسترسی دارد
+    -- نیاز به این است که قبل از اضافه کردن پست یا استوری، چک شود
+    IF EXISTS (SELECT 1 FROM Follow WHERE follower_id = NEW.user_id AND following_id = NEW.user_id) THEN
+        RETURN NEW; -- اجازه اضافه کردن
+    ELSE
+        RAISE EXCEPTION 'Access denied: User is not a follower';
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER check_access_on_post
+BEFORE INSERT ON Posts
+FOR EACH ROW
+EXECUTE FUNCTION grant_access_on_follow();
+
+CREATE TRIGGER check_access_on_story
+BEFORE INSERT ON Stories
+FOR EACH ROW
+EXECUTE FUNCTION grant_access_on_follow();
+
+
+INSERT INTO FriendRequests (sender_id, receiver_id, status)
+VALUES (1, 2, 'pending');
+UPDATE FriendRequests
+SET status = 'accepted'
+WHERE sender_id = 1 AND receiver_id = 2;
+SELECT * FROM Follow WHERE follower_id = 1 AND following_id = 2; 
+INSERT INTO Posts (user_id, content, image_url)
+VALUES (2, 'Just had an amazing day!', 'amazing_day.jpg'); 
+INSERT INTO Comments (user_id, post_id, content)
+VALUES (1, 2, 'Looks great!'); 
+INSERT INTO Comments (user_id, post_id, content)
+VALUES (1, 3, 'Looks great!');  
+INSERT INTO Comments (user_id, post_id, content)
+VALUES (3, 2, 'Nice post!');  
