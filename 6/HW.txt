@@ -1,0 +1,37 @@
+SET username "Armin"              
+SET username "Ali"                 
+GET username                    
+EXISTS username                 
+--------------------------------------
+SET message "Hello"              
+APPEND message " Redis"
+STRLEN message                 
+---------------------------------
+HSET user:1 Name "ali"              
+HSET user:1 Age 25                
+HGETALL user:1                  
+HEXISTS user:1 email             
+----------------------------------
+LPUSH tasks "Task3" "Task2" "Task1"    
+LPOP tasks                       
+LRANGE tasks 0 -1 #یا کد خط بعد را اجرا می کنیم
+LRANGE tasks  0 1                
+--------------------------------
+SADD fruits "banana" "apple" "cherry"   
+SCARD fruits                     
+SREM fruits "apple"                
+-------------------------------------
+HSET product:101 price 500 name "phone" stock 20        
+HINCRBY product:101 stock -5      
+HGET product:101 stock            
+--------------------------------
+RPUSH queue "Item1" "Item2" "Item3"    
+LPOP queue                        
+LRANGE queue 0 -1                 
+--------------------------------
+SET counter 10                   
+INCRBY counter 3                 
+DECRBY counter 2                  
+GET counter                      
+
+
